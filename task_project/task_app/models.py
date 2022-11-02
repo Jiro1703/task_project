@@ -9,23 +9,32 @@ class BShop(models.Model):
     """Модель барбершопа"""
     name = models.CharField(
         max_length=20,
-        verbose_name=_('Название')
+        verbose_name=_('Название'),
     )
     address = models.CharField(
         max_length=40,
-        verbose_name=_('Адрес')
+        verbose_name=_('Адрес'),
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = _('Барбершоп')
         verbose_name_plural = _('Барбершопы')
+        ordering = ['name']
 
 
 class Record(models.Model):
     """Модель записи"""
     name = models.CharField(
         max_length=20,
-        verbose_name=_('Имя')
+        verbose_name=_('Имя клиента'),
+    )
+
+    barber_name = models.CharField(
+        max_length=20,
+        verbose_name=_('Имя сотрудника'),
     )
 
     today = int(datetime.now().day)
@@ -56,8 +65,19 @@ class Record(models.Model):
         ('d_a_tomorrow_20', f'{str(today + 2)}.{str(month)} в 20:00'),
     ]
 
-    record_date = models.CharField(max_length=40, choices=record_date_CHOICES)
+    record_date = models.CharField(
+        max_length=40,
+        choices=record_date_CHOICES,
+        verbose_name='Дата записи',
+    )
+
+    bshop = models.ForeignKey(
+        BShop,
+        on_delete=models.PROTECT,
+        verbose_name='Барбершоп',
+    )
 
     class Meta:
         verbose_name = _('Запись')
         verbose_name_plural = _('Записи')
+        ordering = ['record_date']

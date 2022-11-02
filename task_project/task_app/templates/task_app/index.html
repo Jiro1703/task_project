@@ -1,0 +1,12 @@
+{% extends "layout/basic.html" %}
+{% block content %}
+{% for record in records %}
+<div>
+    <h2>{{ forloop.counter }}. {{record.name }} </h2>
+    <p>{{ record.barber_name }}</p>
+    <p><a href="/{{ bshop.pk }}/">{{ record.bshop.name }}</a></p>
+    <p>{{ record.get_record_date_display}}</p>
+    <a href="{% url 'delete' record.pk %}">Удалить</a>
+</div>
+{% endfor %}
+{% endblock %}

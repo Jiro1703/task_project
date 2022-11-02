@@ -1,0 +1,26 @@
+
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Главная :: Страница записей</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'task_app/style.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1> Записи </h1>
+        </header>
+        <nav>
+            <a href="{% url 'index' %}">Главная</a>
+            <a href="{% url 'record' %}">Записаться</a>
+            <hr>
+            {% for bshop in bshops %}
+                <a>{{ bshop.name }}</a>
+            {% endfor %}
+        </nav>
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+    </body>
+</html>
