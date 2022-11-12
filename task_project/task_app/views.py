@@ -39,13 +39,13 @@ def output_object(request: HttpRequest) -> HttpResponse:
 def delete_object(request: HttpRequest, id_for_del: int) -> HttpResponse:
     Record.objects.filter(pk=id_for_del).delete()
 
-    return redirect('index')
+    return redirect('task_app:index')
 
 
 class RecordCreateView(CreateView):
     template_name = 'task_app/create.html'
     form_class = RecordForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('task_app:index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

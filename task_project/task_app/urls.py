@@ -6,6 +6,7 @@ from .views import (
     delete_object,
 )
 
+app_name = 'task_app'
 urlpatterns = [
     path('', index, name='index'),
     path('record/', RecordCreateView.as_view(), name='record'),

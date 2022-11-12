@@ -6,7 +6,7 @@
     <p>{{ record.barber_name }}</p>
     <p><a href="/{{ bshop.pk }}/">{{ record.bshop.name }}</a></p>
     <p>{{ record.get_record_date_display}}</p>
-    <a href="{% url 'delete' record.pk %}">Удалить</a>
+    <a href="{% url 'task_app:delete' record.pk %}">Удалить</a>
 </div>
 {% endfor %}
 {% endblock %}
